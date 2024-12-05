@@ -1,0 +1,400 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html xmlns:th="http://www.thymeleaf.org" lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;  <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;  <title>Admin Page</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;<div>&ndash;&gt;-->
+<!--&lt;!&ndash;  <p th:text="${message}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;<h1>Welcome to the Customer Page</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;<p><a th:href="@{/logout}">Logout</a></p>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--<!DOCTYPE HTML>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--  &lt;!&ndash; Required meta tags &ndash;&gt;-->
+<!--  <meta charset="utf-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+
+<!--  &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
+<!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">-->
+
+<!--  <title>Admin Dashboard</title>-->
+<!--  <style>-->
+<!--    .header-container {-->
+<!--      display: flex; /* Use flexbox for layout */-->
+<!--      justify-content: space-between; /* Space between items */-->
+<!--      align-items: center; /* Center align items vertically */-->
+<!--      padding: 0 20px; /* Padding on left and right */-->
+<!--    }-->
+
+<!--    .navigation-menu {-->
+<!--      list-style: none; /* Remove bullet points */-->
+<!--      padding: 0; /* Remove padding */-->
+<!--      display: flex; /* Flexbox for horizontal layout */-->
+<!--      justify-content: center; /* Center align menu items */-->
+<!--      margin: 0; /* Remove margin */-->
+<!--    }-->
+
+<!--    .navigation-menu li {-->
+<!--      margin: 0 15px; /* Space between menu items */-->
+<!--    }-->
+
+<!--    .navigation-menu a {-->
+<!--      color: #ffffff; /* White text for links */-->
+<!--      text-decoration: none; /* No underline */-->
+<!--      font-weight: bold; /* Bold text for links */-->
+<!--    }-->
+
+<!--    .navigation-menu a:hover {-->
+<!--      text-decoration: underline; /* Underline on hover */-->
+<!--    }-->
+
+<!--    .profile-icon {-->
+<!--      width: 40px; /* Width of the profile icon */-->
+<!--      height: 40px; /* Height of the profile icon */-->
+<!--      border-radius: 50%; /* Circular profile icon */-->
+<!--      margin-right: 10px; /* Space between icon and text */-->
+<!--    }-->
+
+<!--    body {-->
+<!--      background-color: #f8f9fa; /* Light background for the body */-->
+<!--      font-family: Arial, sans-serif; /* Font family */-->
+<!--      margin: 0; /* Remove default margin */-->
+<!--    }-->
+
+<!--    header {-->
+<!--      background-color: #007bff; /* Darker background for header */-->
+<!--      color: #ffffff; /* White text for header */-->
+<!--      padding: 10px 0; /* Padding for header */-->
+<!--    }-->
+
+<!--    .table {-->
+<!--      background-color: #ffffff; /* White background for the table */-->
+<!--    }-->
+
+<!--    .table-dark th {-->
+<!--      background-color: #343a40; /* Dark background for table header */-->
+<!--      color: #ffffff; /* White text for table header */-->
+<!--    }-->
+
+<!--    .table-striped tbody tr:nth-of-type(odd) {-->
+<!--      background-color: #f2f2f2; /* Light gray for odd rows */-->
+<!--    }-->
+
+<!--    .pagination {-->
+<!--      display: inline-block;-->
+<!--    }-->
+
+<!--    .pagination a {-->
+<!--      color: black;-->
+<!--      float: left;-->
+<!--      padding: 5px 5px;-->
+<!--      text-decoration: none;-->
+<!--    }-->
+
+<!--    .pagination a.active {-->
+<!--      background-color: gray;-->
+<!--      color: white;-->
+<!--      border-radius: 2px;-->
+<!--    }-->
+
+<!--  </style>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<header>-->
+<!--  <div class="header-container">-->
+<!--    <ul class="navigation-menu">-->
+<!--      <li><a th:href="@{/admin/users}">User  Management</a></li>-->
+
+<!--    </ul>-->
+<!--    <div class="ms-auto d-flex align-items-center">-->
+<!--      <a th:href="@{/user/profile}" class="d-flex align-items-center me-3">-->
+<!--        <img src="path/to/profile-picture.jpg" alt="Profile" class="profile-icon"> &lt;!&ndash; Replace with actual image path &ndash;&gt;-->
+<!--      </a>-->
+<!--      <a th:href="@{/logout}" class="btn btn-danger">Logout</a>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</header>-->
+
+<!--<div class="container mt-4">-->
+<!--  <h3>User Management</h3>-->
+<!--  <hr>-->
+<!--  <div class="mb-3">-->
+<!--    <a th:href="@{/admin/add}" class="btn btn-primary">Add New User</a>-->
+<!--    <a th:href="@{/admin/search}" class="btn btn-primary">Search User</a>-->
+<!--  </div>-->
+<!--  <table class="table table-bordered table-striped">-->
+<!--    <thead class="table-dark">-->
+<!--    <tr>-->
+<!--      <th>Username</th>-->
+<!--      <th>Password</th>-->
+<!--      <th>First Name</th>-->
+<!--      <th>Last Name</th>-->
+<!--      <th>Email</th>-->
+<!--      <th >Phone Number</th>-->
+<!--      <th>Profile Picture</th>-->
+<!--      <th>Role</th>-->
+
+<!--      <th>Actions</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+
+<!--    <tbody>-->
+<!--    <tr th:each="user : ${users}">-->
+<!--      <td th:text="${user.username}"></td>-->
+<!--      <td th:text="${user.password}"></td>-->
+<!--      <td th:text="${user.firstName}"></td>-->
+<!--      <td th:text="${user.lastName}"></td>-->
+<!--      <td th:text="${user.email}"></td>-->
+<!--      <td th:text="${user.phoneNumber}"></td>-->
+<!--      <td><img th:src="${user.profilePicture}" alt="Profile Picture" width="40" height="40"></td>-->
+<!--      <td th:text="${user.role}"></td>-->
+<!--      <td>-->
+<!--        <a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm">Edit</a>-->
+<!--        <form th:action="@{/admin/users/delete/{id}(id=${user.id})}" method="post" style="display:inline;">-->
+<!--          <button type="submit" class="btn btn-danger btn-sm">Delete</button>-->
+<!--        </form>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+
+<!--  </table>-->
+<!--  <div th:if="${userPage.totalPages > 0}" class="pagination"-->
+<!--       th:each="pageNumber : ${pageNumbers}">-->
+<!--    <a th:href="@{/listUserPage(size=${userPage.size}, page=${pageNumber})}"-->
+<!--       th:text="${pageNumber}"-->
+<!--       th:class="${pageNumber==userPage.number + 1} ? active"></a>-->
+<!--  </div>-->
+
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      background-color: #2cff07; /* Light background for the body */
+      font-family: Arial, sans-serif; /* Font family */
+      margin: 0; /* Remove default margin */
+    }
+
+    header {
+      background-color: #0d4d7e; /* Dark background for header */
+      color: #ffffff; /* White text for header */
+      padding: 10px 0; /* Padding for header */
+    }
+
+    .header-container {
+      display: flex; /* Use flexbox for layout */
+      justify-content: space-between; /* Space between items */
+      align-items: center; /* Center align items vertically */
+      padding: 0 20px; /* Padding on left and right */
+    }
+
+    #logo {
+      font-size: 1.5rem; /* Font size for logo */
+      font-weight: bold; /* Bold text for logo */
+      color: #81813e;
+    }
+
+    .navigation-menu {
+      list-style: none; /* Remove bullet points */
+      padding: 0; /* Remove padding */
+      display: flex; /* Flexbox for horizontal layout */
+      justify-content: center; /* Center align menu items */
+      margin: 0; /* Remove margin */
+    }
+
+    .navigation-menu li {
+      margin: 0 15px; /* Space between menu items */
+    }
+
+    .navigation-menu a {
+      color: #ffffff; /* White text for links */
+      text-decoration: none; /* No underline */
+      font-weight: bold; /* Bold text for links */
+    }
+
+    .navigation-menu a:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+
+    .profile-icon {
+      width: 40px; /* Width of the profile icon */
+      height: 40px; /* Height of the profile icon */
+      border-radius: 50%; /* Circular profile icon */
+      margin-right: 10px; /* Space between icon and text */
+    }
+
+    .container {
+      margin-top: 20px; /* Space above the container */
+      padding: 20px; /* Padding for container */
+      background-color: #ffffff; /* White background for container */
+      border-radius: 8px; /* Rounded corners */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    }
+
+    .btn-primary {
+      background-color: #55a0f1; /* Primary button color */
+      border: none; /* No border */
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker shade on hover */
+    }
+
+    .btn-warning {
+      background-color: #f6d70e; /* Warning button color */
+      border: none; /* No border */
+    }
+
+    .btn-warning:hover {
+      background-color: #e0a800; /* Darker shade on hover */
+    }
+
+    .btn-danger {
+      background-color: #dc3545; /* Danger button color */
+      border: none; /* No border */
+    }
+
+    .btn-danger:hover {
+      background-color: ; /* Darker shade on hover */
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-container">
+    <div id="logo">
+      HOSPITAL MANAGEEMENT SYSTEM | Admin Dashboard
+    </div>
+    <ul class="navigation-menu">
+      <li><a th:href="@{/admin}">User  Management</a></li>
+      <!--            <li><a th:href="@{/admin/upload/furniture}">Product Management</a></li>-->
+    </ul>
+    <div class="ms-auto d-flex align-items-center">
+      <a th:href="@{/user/profile}" class="d-flex align-items-center me-3">
+        <img src="path/to/profile-picture.jpg" alt="Profile" class="profile-icon"> <!-- Replace with actual image path -->
+      </a>
+      <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+    </div>
+  </div>
+</header>
+
+<div class="container mt-4">
+  <h3>User Management</h3>
+  <hr>
+  <div class="mb-3">
+    <a th:href="@{/admin/add}" class="btn btn-primary">Add New User</a>
+    <a th:href="@{/admin/search}" class="btn btn-primary">Search User</a>
+    <a th:href="@{/admin/download/users}"  class="btn btn-success">Download Data</a>
+    <a th:href="@{/admin/upload/furniture}"  class="btn btn-success">Upload Data</a>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+    <tr>
+      <th><a th:href="@{/admin(sortBy='username', pageNo=${currentPage}, pageSize=${pageSize})}">Username</a></th>
+      <th><a th:href="@{/admin(sortBy='firstName', pageNo=${currentPage}, pageSize=${pageSize})}">First Name</a></th>
+      <th><a th:href="@{/admin(sortBy='lastName', pageNo=${currentPage}, pageSize=${pageSize})}">Last Name</a></th>
+      <th><a th:href="@{/admin(sortBy='email', pageNo=${currentPage}, pageSize=${pageSize})}">Email</a></th>
+      <th><a th:href="@{/admin(sortBy='phoneNumber', pageNo=${currentPage}, pageSize=${pageSize})}">Phone Number</a></th>
+      <th>Profile Picture</th>
+      <th><a th:href="@{/admin(sortBy='role', pageNo=${currentPage}, pageSize=${pageSize})}">Role</a></th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.username}"></td>
+      <td th:text="${user.firstName}"></td>
+      <td th:text="${user.lastName}"></td>
+      <td th:text="${user.email}"></td>
+      <td th:text="${user.phoneNumber}"></td>
+      <td><img th:src="${user.profilePicture}" alt="Profile Picture" width="40" height="40"></td>
+      <td th:text="${user.role}"></td>
+      <td>
+        <a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn btn-warning btn-sm">Edit</a>
+        <form th:action="@{/admin/users/delete/{id}(id=${user.id})}" method="post" style="display:inline;">
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <li class ="page-item" th:classappend="${currentPage == 0} ? 'disabled' : ''">
+        <a class="page-link" th:href="@{/admin(pageNo=${currentPage - 1}, pageSize=${pageSize})}">Previous</a>
+      </li>
+      <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}" th:classappend="${currentPage == i} ? 'active' : ''">
+        <a class="page-link" th:href="@{/admin(pageNo=${i}, pageSize=${pageSize})}" th:text="${i + 1}">1</a>
+      </li>
+      <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled' : ''">
+        <a class="page-link" th:href="@{/admin(pageNo=${currentPage + 1}, pageSize=${pageSize})}">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<canvas id="chart" width="400" height="200"></canvas>
+
+<script>
+  // Fetch user role statistics
+  fetch('/admin/user-role-stats')
+          .then(response => response.json())
+          .then(data => {
+            const roles = Object.keys(data);
+            const roleCounts = Object.values(data);
+
+            // Create the chart
+            const ctx = document.getElementById('chart').getContext('2d');
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: roles,
+                datasets: [{
+                  label: 'Number of Users per Role',
+                  data: roleCounts,
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgb(46,26,174)',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          })
+          .catch(error => console.error('Error fetching user role statistics:', error));
+</script>
+
+</div>
+
+</body>
+
+</html>
