@@ -109,7 +109,7 @@
 
 ### Frontend Setup
 ```bash
-git clone [repository-url]
+git clone https://github.com/Kalinda11/WebTechFinal-FrontEnd-25265.git
 cd frontend
 npm install
 npm run dev
@@ -124,15 +124,17 @@ mvn spring-boot:run
 ```
 
 ## 14. Deployment
-- Frontend: Netlify/Vercel
-- Backend: AWS/Heroku
-- Database: Cloud MySQL/RDS
+- Frontend: Vercel
+- Backend: Vercel
+- Database: Cloud PostgresSQL/RDS
 
 ## 15. Contribution Guidelines
 - Fork Repository
 - Create Feature Branch
 - Submit Pull Request
 - Follow Coding Standards
+## 16. Links
+- Frontend Repo https://github.com/Kalinda11/WebTechFinal-FrontEnd-25265  
 ## 16. Images
  ![](1.png)
  ![](2.png)
